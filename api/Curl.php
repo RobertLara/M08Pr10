@@ -1,20 +1,20 @@
 <?php
 
-require './global.php';
+require 'global.php';
 
 class Curl {
 
-   public function get($url) {
-        
+    public function get($url) {
+
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
         curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.8.1.13) Gecko/20080311 Firefox/2.0.0.13');
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array("User-Agent: php-curl",
-            "Authorization: token ".TOKEN,
+            "Authorization: token " . TOKEN,
             "Content-Length: 0"));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        
+
         $result = curl_exec($ch);
 
         return $result;
@@ -66,6 +66,10 @@ class Curl {
 
         $result = curl_exec($ch);
         return $result;
+    }
+
+    function getRepositories() {
+        return $this->get("https://api.github.com/user/repos");
     }
 
 }
