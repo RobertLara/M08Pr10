@@ -1,13 +1,12 @@
 <?php
-
 //require './api/Curl.php';
 require './api/Controller.php';
 $controller = new Controller();
 /* Repositoris */
 $repositoris = $controller->getRepositories();
-$nRepositoris = sizeof($repositoris); 
+$nRepositoris = sizeof($repositoris);
 
-if(isset($_REQUEST['repositori'])){
+if (isset($_REQUEST['repositori'])) {
     $repositori = $controller->getRepositories($_REQUEST['repositori']);
 }
 include './tpl/header.php';
@@ -49,7 +48,12 @@ include './tpl/header.php';
                             <i class="fa fa-archive fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php if($nRepositoris>0) echo $nRepositoris; else echo "0"; ?></div>
+                            <div class="huge"><?php
+                                if ($nRepositoris > 0)
+                                    echo $nRepositoris;
+                                else
+                                    echo "0";
+                                ?></div>
                             <div>Repositoris</div>
                         </div>
                     </div>
@@ -115,7 +119,6 @@ include './tpl/header.php';
         echo '<div class="panel-left col-sm-6">';
         foreach ($repositoris as $record) {
 
-            //var_dump($record);
             $lock = ($record->private) ? array("panel-warning", "fa-lock") : array("panel-success", "fa-unlock");
             $panel = <<<XYZ
  
@@ -143,9 +146,21 @@ XYZ;
             }
         }
         echo "</div></div>";
-    }else{
-        //var_dump($repositori);
-        echo $controller->getReadme('legomushroom','mojs' );
+    } else {
+        echo '<h2>README</h2><figure class = "highlight">'.$repositori[2].'</figure >';
+        include './tpl/commit/header.php';
+        foreach ($repositori[1] as $commit) {
+
+            $date = $commit->commit->author->date;
+            $date = substr($date, 0, -1);
+            $date = str_replace("T", " ", $date);
+            $msg = $commit->commit->message;
+            $url = $commit->html_url;
+            $name = $commit->commit->committer->name;
+
+            include './tpl/commit/index.php';
+        }
+        include './tpl/commit/footer.php';
     }
     ?>
 </div>

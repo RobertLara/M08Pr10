@@ -38,8 +38,11 @@ class Controller{
     }
     
     function getReadme($user,$name){
-        //return json_decode($this->get("https://api.github.com/repos/$user/$name/readme"));
-        return $this->Parsedown->text($this->curl->get("https://raw.githubusercontent.com/$user/$name/master/readme.md"));
+        $data = json_decode($this->curl->get("https://api.github.com/repos/$user/$name/readme"));
+        if(isset($data->download_url))
+            return $this->Parsedown->text($this->curl->get($data->download_url));
+        else
+            return $this->Parsedown->text('##No s\'ha pogut trobar l\'arxiu README.MD');
     }
 
 }
