@@ -1,10 +1,15 @@
 <?php
 
-require './api/Curl.php';
+//require './api/Curl.php';
+require './api/Controller.php';
+$controller = new Controller();
 /* Repositoris */
-$repositoris = json_decode($curl->getRepositories());
-$nRepositoris = sizeof($repositoris);
+$repositoris = $controller->getRepositories();
+$nRepositoris = sizeof($repositoris); 
 
+if(isset($_REQUEST['repositori'])){
+    $repositori = $controller->getRepositories($_REQUEST['repositori']);
+}
 include './tpl/header.php';
 ?>
 <div id="page-wrapper">
@@ -104,7 +109,7 @@ include './tpl/header.php';
         </div>
     </div>
     <?php
-    if ($nRepositoris > 0) {
+    if (!isset($repositori) && $nRepositoris > 0) {
         $num = 0;
         echo '<div class="panel-group" id="accordion">';
         echo '<div class="panel-left col-sm-6">';
@@ -138,6 +143,9 @@ XYZ;
             }
         }
         echo "</div></div>";
+    }else{
+        //var_dump($repositori);
+        echo $controller->getReadme('legomushroom','mojs' );
     }
     ?>
 </div>

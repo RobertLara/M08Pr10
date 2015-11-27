@@ -1,7 +1,5 @@
 <?php
 
-require 'global.php';
-
 class Curl {
 
     public function get($url) {
@@ -68,11 +66,9 @@ class Curl {
         return $result;
     }
 
-    function getRepositories() {
-        return $this->get("https://api.github.com/user/repos");
-    }
+    
 
 }
 
-$curl = new Curl;
+
 ?>
