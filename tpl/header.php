@@ -42,10 +42,13 @@
                     <div class="sidebar-nav navbar-collapse">
                         <ul class="nav" id="side-menu">
                             <li>
-                                <a href="#.html"><i class="fa fa-dashboard fa-fw"></i> INFORMACIÓ GENERAL</a>
+                                <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> INFORMACIÓ GENERAL</a>
                             </li>
                             <li>
-                                <a href="#.html"><i class="fa fa-files-o fa-fw"></i> REPOSITORIS</a>
+                                <a href="repositories.php"><i class="fa fa-files-o fa-fw"></i> REPOSITORIS</a>
+                            </li>
+                            <li>
+                                <a href="create.php"><i class="fa fa-files-o fa-fw"></i> CREAR REPOSITORIS</a>
                             </li>
 
                         </ul>

@@ -1,5 +1,5 @@
 <?php
-//require './api/Curl.php';
+
 require './api/Controller.php';
 $controller = new Controller();
 /* Repositoris */
@@ -10,117 +10,16 @@ if (isset($_REQUEST['repositori'])) {
     $repositori = $controller->getRepositories($_REQUEST['repositori']);
 }
 include './tpl/header.php';
-?>
-<div id="page-wrapper">
-    <div class="row">
-        <div class="col-lg-12">
-            <h1 class="page-header">Informació General</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-comments fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">6</div>
-                            <div>FOLLOWERS</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">Veure detalls</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-green">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-archive fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge"><?php
-                                if ($nRepositoris > 0)
-                                    echo $nRepositoris;
-                                else
-                                    echo "0";
-                                ?></div>
-                            <div>Repositoris</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">Veure detalls</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-yellow">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-users fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">4</div>
-                            <div>FOLLOWING</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">Veure detalls</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-code-fork fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">11</div>
-                            <div>Dies de contribució</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">Veure detalls</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <?php
-    if (!isset($repositori) && $nRepositoris > 0) {
-        $num = 0;
-        echo '<div class="panel-group" id="accordion">';
-        echo '<div class="panel-left col-sm-6">';
-        foreach ($repositoris as $record) {
+include './tpl/repositories/header.php';
 
-            $lock = ($record->private) ? array("panel-warning", "fa-lock") : array("panel-success", "fa-unlock");
-            $panel = <<<XYZ
+if (!isset($repositori) && $nRepositoris > 0) {
+    $num = 0;
+    echo '<div class="row top-buffer"><div class="panel-group" id="accordion">';
+    echo '<div class="panel-left col-sm-6">';
+    foreach ($repositoris as $record) {
+
+        $lock = ($record->private) ? array("panel-warning", "fa-lock") : array("panel-success", "fa-unlock");
+        $panel = <<<XYZ
  
         <div class="panel $lock[0]" id="panel-$record->id">
             <div class="panel-heading">
@@ -140,31 +39,30 @@ include './tpl/header.php';
             </div>
         </div>
 XYZ;
-            echo $panel;
-            if (floor($nRepositoris / 2) == $num++) {
-                echo '</div><div class="panel-left col-sm-6">';
-            }
+        echo $panel;
+        if (floor($nRepositoris / 2) == $num++) {
+            echo '</div><div class="panel-left col-sm-6">';
         }
-        echo "</div></div>";
-    } else {
-        echo '<h2>README</h2><figure class = "highlight">'.$repositori[2].'</figure >';
-        include './tpl/commit/header.php';
-        foreach ($repositori[1] as $commit) {
-
-            $date = $commit->commit->author->date;
-            $date = substr($date, 0, -1);
-            $date = str_replace("T", " ", $date);
-            $msg = $commit->commit->message;
-            $url = $commit->html_url;
-            $name = $commit->commit->committer->name;
-
-            include './tpl/commit/index.php';
-        }
-        include './tpl/commit/footer.php';
     }
-    ?>
-</div>
+    echo "</div></div></div>";
+} else {
+    echo '<h2>README</h2><figure class = "highlight">' . $repositori[2] . '</figure >';
+    include './tpl/commit/header.php';
+    foreach ($repositori[1] as $commit) {
 
-<?php
+        $date = $commit->commit->author->date;
+        $date = substr($date, 0, -1);
+        $date = str_replace("T", " ", $date);
+        $msg = $commit->commit->message;
+        $url = $commit->html_url;
+        $name = $commit->commit->committer->name;
+
+        include './tpl/commit/index.php';
+    }
+    include './tpl/commit/footer.php';
+}
+
+echo "</div>";
+
 include './tpl/footer.php';
 ?>

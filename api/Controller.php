@@ -44,6 +44,10 @@ class Controller{
         else
             return $this->Parsedown->text('##No s\'ha pogut trobar l\'arxiu README.MD');
     }
+    
+    function getUserData(){
+        return json_decode($this->curl->get("https://api.github.com/user"));
+    }
 
 }
 

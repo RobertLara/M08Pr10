@@ -1,6 +1,7 @@
 .panel-title i.fa {
     float: right;
 }
+.top-buffer{margin-top: 20px;}
 .highlight{
     padding: 9px 14px;
     margin-bottom: 14px;
