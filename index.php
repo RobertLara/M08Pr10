@@ -1,13 +1,15 @@
 <?php
+require './api/global.php';
 require './api/Controller.php';
 $controller = new Controller();
 include './tpl/header.php';
 
 $userData = $controller->getUserData();
+$notifications = $controller->getNotifications();
 ?>
 
 <div id="page-wrapper">
-    
+
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Informació General</h1>
@@ -52,7 +54,7 @@ $userData = $controller->getUserData();
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php
                                 if (isset($userData->public_repos) && isset($userData->plan->private_repos))
-                                    echo ($userData->public_repos+$userData->plan->private_repos);
+                                    echo ($userData->public_repos + $userData->plan->private_repos);
                                 else
                                     echo "0";
                                 ?></div>
@@ -101,11 +103,13 @@ $userData = $controller->getUserData();
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col-xs-3">
-                            <i class="fa fa-code-fork fa-5x"></i>
+                            <i class="fa fa-bell fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">11</div>
-                            <div>Dies de contribució</div>
+                            <div class="huge">
+                                <?php echo sizeof($notifications); ?>
+                            </div>
+                            <div>Notificacions</div>
                         </div>
                     </div>
                 </div>
@@ -122,7 +126,7 @@ $userData = $controller->getUserData();
     <div class="row">
         <div class="col-lg-3">
             <figure class = "highlight">
-                <img src="<?php echo $userData->avatar_url;?>" class="img-responsive"alt="user-img" />
+                <img src="<?php echo $userData->avatar_url; ?>" class="img-responsive"alt="user-img" />
             </figure >
         </div>
         <div class="col-lg-9">

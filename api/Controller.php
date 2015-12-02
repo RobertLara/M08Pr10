@@ -1,6 +1,5 @@
 <?php
 
-require 'global.php';
 require 'Parsedown.php';
 require 'Curl.php';
 
@@ -59,6 +58,10 @@ class Controller{
             'license_template' =>strval($license)
         );
         return json_decode($this->curl->post("https://api.github.com/user/repos",json_encode($parameters)));
+    }
+    
+    function getNotifications(){
+        return json_decode($this->curl->get("https://api.github.com/notifications"));
     }
 
 }

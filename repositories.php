@@ -1,5 +1,6 @@
 <?php
 
+require './api/global.php';
 require './api/Controller.php';
 $controller = new Controller();
 /* Repositoris */

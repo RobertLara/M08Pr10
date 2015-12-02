@@ -1,4 +1,5 @@
 <?php
+require './api/global.php';
 require './api/Controller.php';
 $controller = new Controller();
 if (isset($_REQUEST['name'])) {
