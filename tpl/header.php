@@ -50,6 +50,15 @@
                             <li>
                                 <a href="create.php"><i class="fa fa-files-o fa-fw"></i> CREAR REPOSITORIS</a>
                             </li>
+                            <li>
+                                <a href="delete.php"><i class="fa fa-trash fa-fw"></i> ELIMINAR REPOSITORIS</a>
+                            </li>
+                            <li>
+                                <a href="gists.php"><i class="fa fa-github-square fa-fw"></i> CREAR GISTS</a>
+                            </li>
+                            <li>
+                                <a href="clear.php"><i class="fa fa-sign-out fa-fw"></i> TANCAR SESSIÓ</a>
+                            </li>
 
                         </ul>
                     </div>
