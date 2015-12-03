@@ -48,20 +48,33 @@ class Controller{
         return json_decode($this->curl->get("https://api.github.com/user"));
     }
     
-    function createRepository($name,$private = false,$wiki = true,$desc = '',$license = 'mit',$download=true){
+    function createRepository($name,$private,$wiki,$desc = '',$license = 'mit',$download){
+        if($private=="false" || $private == false) $private = false;
+        else $private = true;
+        
+        if($wiki=="false" || $wiki == false)$wiki = false;
+        else $wiki = true;
+        
+        if($download=="false" || $download == false) $download = false;
+        else $download = true;
+        
         $parameters = array(
             'name' => strval($name),
             'descripction' => strval($desc),
-            'private' =>boolval($private),
-            'has_wiki' => boolval($wiki),
-            'has_downloads' =>boolval($download),
-            'license_template' =>strval($license)
+            'private' => $private,
+            'has_wiki' => $wiki,
+            'has_downloads' => $download
+            //'license_template' => strval($license)
         );
         return json_decode($this->curl->post("https://api.github.com/user/repos",json_encode($parameters)));
     }
     
     function getNotifications(){
         return json_decode($this->curl->get("https://api.github.com/notifications"));
+    }
+    
+    function deleteRepository($name){
+        return json_decode($this->curl->delete("https://api.github.com/repos/".$_SESSION['username']."/$name",null));
     }
 
 }

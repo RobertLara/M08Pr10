@@ -3,7 +3,7 @@ require './api/global.php';
 require './api/Controller.php';
 $controller = new Controller();
 if (isset($_REQUEST['name'])) {
-    $reponse = $controller->createRepository($_REQUEST['name'], $_REQUEST['desc'], $_REQUEST['private'], $_REQUEST['wiki'], $_REQUEST['download'], $_REQUEST['license']);
+    $reponse = $controller->createRepository($_REQUEST['name'], $_REQUEST['private'], $_REQUEST['wiki'],$_REQUEST['desc'], $_REQUEST['download'], $_REQUEST['license']);
 }
 include './tpl/header.php';
 ?>
@@ -16,7 +16,7 @@ include './tpl/header.php';
         <?php
         if (isset($reponse)) {
             if (isset($reponse->id)) {
-                echo '<div style="margin:20px;" class="alert alert-success"><strong>Repositori creat amb exit!</strong> Indicates a successful or positive action.</div>';
+                echo '<div style="margin:20px;" class="alert alert-success">Repositori creat amb exit!</div>';
             } else {
                 echo '<div style="margin:20px;" class="alert alert-danger"><strong>Error!</strong> El repositori no s\'ha creat correctamente.</div>';
             }
@@ -40,7 +40,7 @@ include './tpl/header.php';
                             <button type="button" id="btnPrivate">
                                 <i  class="fa fa-2x fa-unlock"></i>
                             </button>
-                            <input id="inputPrivate" type="hidden" class="form-control" name="private" value="true">
+                            <input id="inputPrivate" type="hidden" class="form-control" name="private" value="false">
                         </div>
                     </div> 
                     <div class="col-xs-3">
@@ -58,9 +58,7 @@ include './tpl/header.php';
                     <div class="col-xs-12">
                         <label for="InputEmail">Descripció</label>
                         <div class="textarea-form-control">
-                            <textarea class="form-control" rows="3" name="desc">
-                                
-                            </textarea>
+                            <textarea class="form-control" rows="3" name="desc"></textarea>
                         </div>
                         <br />
                     </div>
