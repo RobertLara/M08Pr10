@@ -1,12 +1,11 @@
 <?php
-//require './api/global.php';
 session_start();
-if (isset($_SESSION['token'])) {
+if (isset($_SESSION['token'])) {    //En cas d'existir token redirecciona a l'index
     header("Location: index.php");
-} else if (isset($_REQUEST['token']) && isset($_REQUEST['username']) && strlen($_REQUEST['token'])==40) {
-    $_SESSION['token'] = $_REQUEST['token'];
-    $_SESSION['username'] = $_REQUEST['username'];
-    header("Location: index.php");
+} else if (isset($_REQUEST['token']) && isset($_REQUEST['username']) && strlen($_REQUEST['token'])==40) {   //En cas de haber enviat un token i tindre una mida concreta
+    $_SESSION['token'] = $_REQUEST['token'];    //Desem les dades
+    $_SESSION['username'] = $_REQUEST['username'];  //Desem les dades
+    header("Location: index.php");      //Redirecciona
 }
 
 require './api/Controller.php';

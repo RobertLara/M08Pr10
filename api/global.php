@@ -1,9 +1,8 @@
 <?php
 
-session_start();
-//define('TOKEN', "93413c63eabe74b75a6c1029b844b156eb6190df");
+session_start();    //Iniciem la sessio PHP
 
-if (!isset($_SESSION['token'])) {
+if (!isset($_SESSION['token'])) {   //En cas de no estar definit el TOKEN de Github redirecciona a token.php
     header("Location: token.php");
 }
 ?>

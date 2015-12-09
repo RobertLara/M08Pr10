@@ -4,8 +4,8 @@ require './api/Controller.php';
 $controller = new Controller();
 include './tpl/header.php';
 
-$userData = $controller->getUserData();
-$notifications = $controller->getNotifications();
+$userData = $controller->getUserData(); //Desem les dades del usuari
+$notifications = $controller->getNotifications();   //Obtenim les notificacións de l'usuari
 ?>
 
 <div id="page-wrapper">
@@ -24,7 +24,7 @@ $notifications = $controller->getNotifications();
                             <i class="fa fa-comments fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php
+                            <div class="huge"><?php     //Mostrem els seguidors
                                 if ($userData->followers > 0)
                                     echo $userData->followers;
                                 else
@@ -65,7 +65,7 @@ $notifications = $controller->getNotifications();
                             <i class="fa fa-users fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge"><?php
+                            <div class="huge"><?php //Usuaris que segueixo
                                 if ($userData->following > 0)
                                     echo $userData->following;
                                 else
@@ -86,7 +86,7 @@ $notifications = $controller->getNotifications();
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">
-                                <?php echo sizeof($notifications); ?>
+                                <?php echo sizeof($notifications); ?>   <!-- Mostra el numero de notificacions-->
                             </div>
                             <div>Notificacions</div>
                         </div>
@@ -98,11 +98,11 @@ $notifications = $controller->getNotifications();
     <div class="row">
         <div class="col-lg-3">
             <figure class = "highlight">
-                <img src="<?php echo $userData->avatar_url; ?>" class="img-responsive"alt="user-img" />
+                <img src="<?php echo $userData->avatar_url; ?>" class="img-responsive"alt="user-img" /> <!-- Mostra l'imatge de l'usuari-->
             </figure >
         </div>
         <div class="col-lg-9">
-            <ul>              
+            <ul>              <!-- Mostra les dades d'usuari (És posible que hi hagui camps buits per no estar informats)-->
                 <li>Nom: <?php echo $userData->name; ?></li>
                 <li>Nom d'usuari: <?php echo $userData->login; ?></li>
                 <li>Usuari desde: <?php echo $userData->created_at; ?></li>

@@ -1,4 +1,4 @@
 <?php 
 session_start();
-session_destroy();
-header("Location: token.php");
+session_destroy();  //Elimina la session
+header("Location: token.php");  //Redirecciona a token

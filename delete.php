@@ -2,8 +2,8 @@
 require './api/global.php';
 require './api/Controller.php';
 $controller = new Controller();
-if (isset($_REQUEST['name'])) {
-    $response = $controller->deleteRepository($_REQUEST['name']);
+if (isset($_REQUEST['name'])) {     //En cas de esta definit el parametre name
+    $response = $controller->deleteRepository($_REQUEST['name']);   //Crida al metode esborrar repositori
 }
 include './tpl/header.php';
 ?>
@@ -14,7 +14,7 @@ include './tpl/header.php';
             <h4 class="modal-title" id="myModalLabel">Eliminar un repositori</h4>
         </div>
         <?php
-        if (isset($_REQUEST['name']) && $response == null) {
+        if (isset($_REQUEST['name']) && $response == null) {    //Mostra el resultat de l'acció si ha estat efectuada
             echo '<div style="margin:20px;" class="alert alert-success">Repositori eliminat amb exit!</div>';
         } else if(isset($_REQUEST['name'])) {
             echo '<div style="margin:20px;" class="alert alert-danger"><strong>Error!</strong> El repositori indicat no s\'ha pugut eliminar.</div>';

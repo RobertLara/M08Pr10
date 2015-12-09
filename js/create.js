@@ -1,4 +1,4 @@
-$('#btnPrivate').click(function () {
+$('#btnPrivate').click(function () {    //Modifica el valor al fer click
      $("i",this).toggleClass("fa-lock fa-unlock");
      if($('#inputPrivate').val() == 'true'){
          $('#inputPrivate').val('false') ;
@@ -6,7 +6,7 @@ $('#btnPrivate').click(function () {
          $('#inputPrivate').val('true');
      }
 }); 
-$('#btnWiki').click(function () {
+$('#btnWiki').click(function () {   //Modifica el valor al fer click
      $("i",this).toggleClass("fa-comments fa-times");
      if($('#inputWiki').val() == 'true'){
          $('#inputWiki').val('false');
@@ -14,7 +14,7 @@ $('#btnWiki').click(function () {
          $('#inputWiki').val('true');
      }
 }); 
-$('#btnDwn').click(function () {
+$('#btnDwn').click(function () {    //Modifica el valor al fer click
      $("i",this).toggleClass("fa-download fa-times");
      if($('#inputDown').val() == 'true'){
          $('#inputDown').val('false');

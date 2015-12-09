@@ -2,8 +2,8 @@
 require './api/global.php';
 require './api/Controller.php';
 $controller = new Controller();
-if (isset($_REQUEST['name'])) {  //En cas de esta definit el parametre name
-    $reponse = $controller->createRepository($_REQUEST['name'], $_REQUEST['private'], $_REQUEST['wiki'],$_REQUEST['desc'], $_REQUEST['download'], $_REQUEST['license']);   //Crida al metode crear 
+if (isset($_REQUEST['name'])) {
+    $reponse = $controller->createGists();
 }
 include './tpl/header.php';
 ?>
@@ -11,11 +11,11 @@ include './tpl/header.php';
 <div id="login-overlay" class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">Creació d'un nou repositori</h4>
+            <h4 class="modal-title" id="myModalLabel">Creació d'un Gists</h4>
         </div>
         <?php
         if (isset($reponse)) {
-            if (isset($reponse->id)) {  //Mostra el resultat de l'acció si ha estat efectuada
+            if (isset($reponse->id)) {
                 echo '<div style="margin:20px;" class="alert alert-success">Repositori creat amb exit!</div>';
             } else {
                 echo '<div style="margin:20px;" class="alert alert-danger"><strong>Error!</strong> El repositori no s\'ha creat correctamente.</div>';
