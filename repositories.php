@@ -5,21 +5,21 @@ require './api/Controller.php';
 $controller = new Controller();
 /* Repositoris */
 $repositoris = $controller->getRepositories();
-$nRepositoris = sizeof($repositoris);
+$nRepositoris = sizeof($repositoris);   //Obtenim el nombre de repositoris
 
-if (isset($_REQUEST['repositori'])) {
-    $repositori = $controller->getRepositories($_REQUEST['repositori']);
+if (isset($_REQUEST['repositori'])) {   //En cas d'indicar el parametre repositori
+    $repositori = $controller->getRepositories($_REQUEST['repositori']);    //Obtenim el repositori
 }
-include './tpl/header.php';
-include './tpl/repositories/header.php';
+include './tpl/header.php'; //Capçalera estandard
+include './tpl/repositories/header.php';    //Capçalera de repositoris
 
-if (!isset($repositori) && $nRepositoris > 0) {
+if (!isset($repositori) && $nRepositoris > 0) { //En cas de mostrar tots els repositoris
     $num = 0;
     echo '<div class="row top-buffer"><div class="panel-group" id="accordion">';
     echo '<div class="panel-left col-sm-6">';
     foreach ($repositoris as $record) {
 
-        $lock = ($record->private) ? array("panel-warning", "fa-lock") : array("panel-success", "fa-unlock");
+        $lock = ($record->private) ? array("panel-warning", "fa-lock") : array("panel-success", "fa-unlock");   //Obtenim si es privat o no
         $panel = <<<XYZ
  
         <div class="panel $lock[0]" id="panel-$record->id">
@@ -41,16 +41,15 @@ if (!isset($repositori) && $nRepositoris > 0) {
         </div>
 XYZ;
         echo $panel;
-        if (floor($nRepositoris / 2) == $num++) {
+        if (floor($nRepositoris / 2) == $num++) {   //Condicional per dividir en dues columnes
             echo '</div><div class="panel-left col-sm-6">';
         }
     }
     echo "</div></div></div>";
-} else {
-    echo '<h2>README</h2><figure class = "highlight">' . $repositori[2] . '</figure >';
-    include './tpl/commit/header.php';
+} else {    //En cas d'un repositori concret
+    echo '<h2>README</h2><figure class = "highlight">' . $repositori[2] . '</figure >'; //Contingut README.MD
+    include './tpl/commit/header.php';  //Capçalera commit
     foreach ($repositori[1] as $commit) {
-
         $date = $commit->commit->author->date;
         $date = substr($date, 0, -1);
         $date = str_replace("T", " ", $date);
