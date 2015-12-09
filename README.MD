@@ -549,6 +549,7 @@ X-RateLimit-Remaining: 4999
 * [Parsedown] - Classe PHP que transforma el format markdown per la visualització en navegadors
 * [Twitter Bootstrap] - Framework UI responsive
 * [jQuery] - Llibreria JavaScript
+
 ---
 ## License
 MIT
