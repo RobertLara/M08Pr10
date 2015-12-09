@@ -34,7 +34,7 @@ if (!isset($repositori) && $nRepositoris > 0) { //En cas de mostrar tots els rep
             </div>
             <div id="collapse-$record->id" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <a href='#' target='_blank'><i class="fa fa-eye"></i> Veure més</a>   
+                    <a href='repositories.php?repositori=$record->name' target='_self'><i class="fa fa-eye"></i> Veure més</a>   
                     <a class="pull-right" href='$record->html_url' target='_blank'><i class="fa fa-github"></i> Veure en Github</a> 
                 </div>
             </div>
