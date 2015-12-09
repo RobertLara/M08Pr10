@@ -51,7 +51,7 @@ $notifications = $controller->getNotifications();   //Obtenim les notificacións
                                 else
                                     echo "0";
                                 ?></div>
-                            <div>Repositoris</div>
+                            <div>REPOSITORIS</div>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ $notifications = $controller->getNotifications();   //Obtenim les notificacións
                             <div class="huge">
                                 <?php echo sizeof($notifications); ?>   <!-- Mostra el numero de notificacions-->
                             </div>
-                            <div>Notificacions</div>
+                            <div>NOTIFICACIONS</div>
                         </div>
                     </div>
                 </div>
@@ -103,12 +103,12 @@ $notifications = $controller->getNotifications();   //Obtenim les notificacións
         </div>
         <div class="col-lg-9">
             <ul>              <!-- Mostra les dades d'usuari (És posible que hi hagui camps buits per no estar informats)-->
-                <li>Nom: <?php echo $userData->name; ?></li>
-                <li>Nom d'usuari: <?php echo $userData->login; ?></li>
-                <li>Usuari desde: <?php echo $userData->created_at; ?></li>
-                <li>Adreça electronica: <?php echo $userData->email; ?></li>
-                <li>Localització: <?php echo $userData->location; ?></li>
-                <li>Enllaç <?php echo $userData->url; ?></li>
+                <li><b>Nom: </b><?php echo $userData->name; ?></li>
+                <li><b>Nom d'usuari: </b><?php echo $userData->login; ?></li>
+                <li><b>Usuari des de: </b><?php echo $userData->created_at; ?></li>
+                <li><b>Adreça electrònica: </b><?php echo $userData->email; ?></li>
+                <li><b>Localització: </b><?php echo $userData->location; ?></li>
+                <li><b>Enllaç: </b><?php echo $userData->url; ?></li>
             </ul>
         </div>
     </div>

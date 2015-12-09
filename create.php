@@ -65,7 +65,7 @@ include './tpl/header.php';
                 </div>
                 <div class="form-group">
                     <div class="col-xs-6">
-                        <label for="InputStreetName">Llicencia</label>
+                        <label for="InputStreetName">Llicència</label>
                         <select name="license" class="form-control">
                             <option value="apache">Apache</option>
                             <option value="glp">GPL</option>

@@ -34,11 +34,6 @@ include './tpl/header.php';
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Enviar Token</button>
                     </form>
                 </div>
-                <div class="row">
-                    <br/><div class="alert alert-info">
-                        <strong>Utilitza el meu</strong> 93413c63eabe74b75a6c1029b844b156eb6190df
-                    </div>
-                </div>
             </div>           
             <br/><br/>
         </div>

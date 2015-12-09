@@ -53,9 +53,6 @@
                             <li>
                                 <a href="delete.php"><i class="fa fa-trash fa-fw"></i> ELIMINAR REPOSITORIS</a>
                             </li>
-                            <li>
-                                <a href="gists.php"><i class="fa fa-github-square fa-fw"></i> CREAR GISTS</a>
-                            </li>
                             <?php 
                             
                             if(isset($_SESSION['token']) || isset($_SESSION['username'])){  //En cas de tenir token definit es pot tancar sessió
